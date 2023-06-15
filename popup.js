@@ -7,30 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const title = tabs[0].title;
       const url = tabs[0].url;
 
-      alert(title);
-      alert(url);
+      const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLScqWMQsFNLQZ3sMQue8cG9zFF5gP-soiJcbPE9WNm0dmiLSHA/viewform?entry.759453538=${encodeURIComponent(title)}&entry.1621102160=${encodeURIComponent(url)}`;
+
+      // Open the Google Form in a new tab
+      chrome.tabs.create({ url: formUrl });
 
 
-      // Construct the form data
-      const formData = new FormData();
-      formData.append('entry.123456789', title); // Replace '123456789' with the actual field ID for the Title field
-      formData.append('entry.987654321', url); // Replace '987654321' with the actual field ID for the URL field
-
-      // Send the form data to the Google Form submission URL
-      fetch('https://docs.google.com/forms/d/e/1FAIpQLScqWMQsFNLQZ3sMQue8cG9zFF5gP-soiJcbPE9WNm0dmiLSHA/formResponse', {
-        method: 'POST',
-        body: formData
-      })
-        .then(function(response) {
-          if (response.ok) {
-            alert('Form submitted successfully!');
-          } else {
-            alert('Form submission failed.');
-          }
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-        });
     });
   });
 });
